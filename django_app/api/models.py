@@ -2,16 +2,16 @@ from django.db import models
 from pydantic import BaseModel
 
 class DocumentMigration(BaseModel):
-    successful: bool = None
-    reason:str = None
+    successful: bool = False
+    reason:str = ''
 
 class Attachment(BaseModel):
-    clinicalType: str = None
-    mimeType: str = None
-    sizeBytes: int = None
+    clinicalType: str = ''
+    mimeType: str = ''
+    sizeBytes: int = 0
 
 class Payload(BaseModel):
-    payload: Attachment = None
+    payload: Attachment = ''
 
 class Message(BaseModel):
     documentMigration: DocumentMigration = None
