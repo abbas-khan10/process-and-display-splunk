@@ -10,19 +10,27 @@ clinical_types = ["SCANNED_DOCUMENT",
                   "OTHER"]
 
 def get_total_successful_integrations(data):
-    count = 0
+    successful_messages = []
+
     for message in data:
         if message["documentMigration"]["successful"] == True:
-            count += 1
-    return count
+           successful_messages.append(message)
+
+    break_down = get_count_by_clinical_type(successful_messages)
+
+    return {"success_count": len(successful_messages), **break_down}
+
 
 def get_total_failed_integrations(data):
-    count = 0
+
+    failed_messages = []
 
     for message in data:
         if message["documentMigration"]["successful"] == False:
-            count += 1
-    return count
+            failed_messages.append(message)
+    break_down = get_count_by_clinical_type(failed_messages)
+
+    return {"failed_count": len(failed_messages), **break_down}
 
 def get_count_by_clinical_type(data):
     counts = {}
