@@ -53,7 +53,7 @@ def get_json_data_from_database():
     response = []
 
     for message in message_counts:
-        json_message = message.model_dump_json
+        json_message = message.model_dump_json()
         response.append(json_message)
 
     return response
