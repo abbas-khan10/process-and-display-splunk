@@ -6,15 +6,15 @@ class DocumentMigration(BaseModel):
     reason:str = None
 
 class Attachment(BaseModel):
-    clinical_type: str = None
-    mine_type: str = None
-    size_bytes: int = None
+    clinicalType: str = None
+    mimeType: str = None
+    sizeBytes: int = None
 
 class Payload(BaseModel):
     payload: Attachment = None
 
 class Message(BaseModel):
-    document_migration: DocumentMigration = None
+    documentMigration: DocumentMigration = None
     payload: Payload = None
 
 
