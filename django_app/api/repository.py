@@ -18,18 +18,8 @@ def migrate_data():
             if eventType is not None and eventType == "DOCUMENT_RESPONSES":
                 data_array.append(data)
 
-clinical_types = ["SCANNED_DOCUMENT",
-                  "ORIGINAL_TEXT_DOCUMENT",
-                  "OCR_TEXT_DOCUMENT",
-                  "IMAGE",
-                  "AUDIO_DICTATION",
-                  "OTHER_AUDIO",
-                  "OTHER_DIGITAL_SIGNAL",
-                  "EDI_MESSAGE",
-                  "NOT_AVAILABLE",
-                  "OTHER"]
 
-def get_total_successful_integrations():
+def get_integrations_counts():
     successful_messages = []
     failed_messages = []
 
@@ -59,4 +49,11 @@ def get_count_by_clinical_type(messages):
     return counts
 
 def get_json_data_from_database():
-    pass
+    message_counts = get_integrations_counts()
+    response = []
+
+    for message in message_counts:
+        json_message = message.model_dump_json
+        response.append(json_message)
+
+    return response
