@@ -59,3 +59,6 @@ def get_count_by_clinical_type():
         else: counts[message_clinical_type] = 1
 
     return counts
+
+def get_json_data_from_database():
+    pass
