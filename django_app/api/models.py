@@ -1,3 +1,8 @@
 from django.db import models
+from pydantic import BaseModel
 
-# Create your models here.
+class DocumentMigration(BaseModel):
+    successful: bool = None
+
+
+
