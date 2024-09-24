@@ -3,8 +3,8 @@ import json
 
 from api.models import Message
 
-folder_path = "data"
-json_files = [f for f in os.listdir(folder_path) if f.endswith(".json")]
+folder_path = "200924"
+json_files = [f for f in os.listdir(".") if f.endswith(".json")]
 
 data_array = []
 
@@ -40,9 +40,10 @@ def get_count_by_clinical_type(messages):
     counts = {}
     for message in messages:
         message_clinical_type = message.payload.attachment.clinicalType
-        if counts[message_clinical_type]:
-            counts[message_clinical_type] += 1
-        else: counts[message_clinical_type] = 1
+        clinical_type = message_clinical_type.model_jump_json()
+        if counts[clinical_type]:
+            counts[clinical_type] += 1
+        else: counts[clinical_type] = 0
 
     return counts
 
@@ -51,7 +52,6 @@ def get_json_data_from_database():
     response = []
 
     for message in message_counts:
-        json_message = message.model_dump_json()
-        response.append(json_message)
+        response.append(message)
 
     return response

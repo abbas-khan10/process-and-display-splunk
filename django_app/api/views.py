@@ -1,12 +1,16 @@
 import json
 from datetime import datetime
+from http.client import HTTPResponse
+from json.decoder import JSONObject
+
 import gviz_api
+from django.http import JsonResponse
 
 from api.repository import get_json_data_from_database
 
 
 def index(request):
-    response = get_json_data_from_database()
+    response = get_data_table_object()
     return response
 
 
@@ -84,8 +88,8 @@ def get_data_table_object():
 
     data_table = gviz_api.DataTable(json.dumps(schema))
     data_table.LoadData(data_array)
-    return data_table.ToJSon()
-
+    print(data_table)
+    return JsonResponse(data_table.ToJSon(), safe=False)
 
 def is_same_day(date_string, target_date="2024-09-20"):
     input_date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S").date()
