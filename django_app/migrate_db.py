@@ -10,4 +10,6 @@ for file_name in json_files:
     file_path = os.path.join(folder_path, file_name)
     with open(file_path, "r") as json_file:
         data = json.load(json_file)
-        data_array.append(data)
+        eventType = data.get("eventType", None)
+        if eventType is not None and eventType == "'DOCUMENT_RESPONSES'":
+            data_array.append(data)
