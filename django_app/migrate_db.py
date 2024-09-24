@@ -11,5 +11,5 @@ for file_name in json_files:
     with open(file_path, "r") as json_file:
         data = json.load(json_file)
         eventType = data.get("eventType", None)
-        if eventType is not None and eventType == "'DOCUMENT_RESPONSES'":
+        if eventType is not None and eventType == "DOCUMENT_RESPONSES":
             data_array.append(data)
