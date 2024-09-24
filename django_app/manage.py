@@ -3,6 +3,8 @@
 import os
 import sys
 
+from api.repository import migrate_data
+
 
 def main():
     """Run administrative tasks."""
@@ -19,4 +21,5 @@ def main():
 
 
 if __name__ == "__main__":
+    migrate_data()
     main()

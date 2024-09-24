@@ -32,8 +32,6 @@ def get_integrations_counts():
     success_break_down = get_count_by_clinical_type(successful_messages)
     failed_break_down = get_count_by_clinical_type(failed_messages)
 
-
-
     return {"success_count": len(successful_messages), "failed_count": len(failed_messages),
             "success_breakdown": success_break_down, "failed_breakdown": failed_break_down}
 
